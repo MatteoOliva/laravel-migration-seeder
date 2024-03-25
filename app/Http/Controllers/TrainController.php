@@ -9,8 +9,7 @@ class TrainController extends Controller
 {
     public function index (){
         $trains = Train::whereDate('departure _time',today()->toDateString())->get();
-        dd($trains);
-        return view('home');    
+        return view('home', compact('trains'));    
     }
   
 }
