@@ -8,7 +8,8 @@ use App\Models\Train;
 class TrainController extends Controller
 {
     public function index (){
-        dd(Train::all());
+        $trains = Train::whereDate('departure _time',today()->toDateString())->get();
+        dd($trains);
         return view('home');    
     }
   
