@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use PhpParser\Node\NullableType;
 
 return new class extends Migration
 {
@@ -15,7 +16,16 @@ return new class extends Migration
     {
         Schema::create('trains', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('company',50);
+            $table->string('departure_station',100);
+            $table->string('arrival_station',100);
+            $table->dateTime('departure _time');
+            $table->dateTime('arrival _time');
+            $table->string('train_code',15);
+            $table->tinyInteger('wagons_number')->nullable();
+            $table->boolean('on_time')->default(true);
+            $table->boolean('cancelled')->default(false);
+             $table->timestamps();
         });
     }
 
