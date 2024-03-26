@@ -15,15 +15,56 @@ class TrainSeeder extends Seeder
      */
     public function run()
     {
+    $trains_data = [
+        [
+        "company"=> "MyCompany",
+        "departure_station"=> "Roma",
+
+        "arrival_station"=> "Milano",
+
+        "departure_time"=> "2024-03-21 13:00:00",
+
+        "arrival_time"=> "2024-03-21 15:00:00",
+        "train_code"=> "12333",
+        "wagons_number"=> 12
+    ],
+    [
+        "company"=> "MyCompany",
+        "departure_station"=> "Roma",
+
+        "arrival_station"=> "Milano",
+
+        "departure_time"=> "2024-03-21 13:00:00",
+
+        "arrival_time"=> "2024-03-21 15:00:00",
+        "train_code"=> "12333",
+        "wagons_number"=> 12
+    ],
+    [
+        "company"=> "MyCompany",
+        "departure_station"=> "Roma",
+
+        "arrival_station"=> "Milano",
+
+        "departure_time"=> "2024-03-21 13:00:00",
+
+        "arrival_time"=> "2024-03-21 15:00:00",
+        "train_code"=> "12333",
+        "wagons_number"=> 12
+    ],
+    ];
+    foreach ($trains_data as $train_data)
+    {
         $train = new Train;
-        $train->company = "MyComany";
-        $train->departure_station = "Roma";
-        $train->arrival_station = "Milano";
-        $train->departure_time = "2024-03-21 13:00:00";
-        $train->arrival_time = "2024-03-21 15:00:00";
-        $train->train_code = "12333";
-        $train->wagons_number = 12;
+        $train->company = $train_data ["company"];
+        $train->departure_station = $train_data ["departure_station"];
+        $train->arrival_station = $train_data ["arrival_station"];
+        $train->departure_time = $train_data ["departure_time"];
+        $train->arrival_time = $train_data ["arrival_time"];
+        $train->train_code = $train_data ["train_code"];
+        $train->wagons_number = $train_data ["wagons_number"];
         $train->save();
         
     }
+} 
 }
