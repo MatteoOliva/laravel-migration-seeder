@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Train;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 
 class TrainSeeder extends Seeder
 {
@@ -13,59 +14,67 @@ class TrainSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-    $trains_data = [
-        [
-        "company"=> "MyCompany",
-        "departure_station"=> "Roma",
+    // $trains_data = [
+    //     [
+    //     "company"=> "MyCompany",
+    //     "departure_station"=> "Roma",
 
-        "arrival_station"=> "Milano",
+    //     "arrival_station"=> "Milano",
 
-        "departure_time"=> "2024-03-21 13:00:00",
+    //     "departure_time"=> "2024-03-21 13:00:00",
 
-        "arrival_time"=> "2024-03-21 15:00:00",
-        "train_code"=> "12333",
-        "wagons_number"=> 12
-    ],
-    [
-        "company"=> "MyCompany",
-        "departure_station"=> "Roma",
+    //     "arrival_time"=> "2024-03-21 15:00:00",
+    //     "train_code"=> "12333",
+    //     "wagons_number"=> 12
+    // ],
+    // [
+    //     "company"=> "MyCompany",
+    //     "departure_station"=> "Roma",
 
-        "arrival_station"=> "Milano",
+    //     "arrival_station"=> "Milano",
 
-        "departure_time"=> "2024-03-21 13:00:00",
+    //     "departure_time"=> "2024-03-21 13:00:00",
 
-        "arrival_time"=> "2024-03-21 15:00:00",
-        "train_code"=> "12333",
-        "wagons_number"=> 12
-    ],
-    [
-        "company"=> "MyCompany",
-        "departure_station"=> "Roma",
+    //     "arrival_time"=> "2024-03-21 15:00:00",
+    //     "train_code"=> "12333",
+    //     "wagons_number"=> 12
+    // ],
+    // [
+    //     "company"=> "MyCompany",
+    //     "departure_station"=> "Roma",
 
-        "arrival_station"=> "Milano",
+    //     "arrival_station"=> "Milano",
 
-        "departure_time"=> "2024-03-21 13:00:00",
+    //     "departure_time"=> "2024-03-21 13:00:00",
 
-        "arrival_time"=> "2024-03-21 15:00:00",
-        "train_code"=> "12333",
-        "wagons_number"=> 12
-    ],
-    ];
-    foreach ($trains_data as $train_data)
-    {
+    //     "arrival_time"=> "2024-03-21 15:00:00",
+    //     "train_code"=> "12333",
+    //     "wagons_number"=> 12
+    // ],
+    // ];
+    // foreach ($trains_data as $train_data)
+    // {
         $train = new Train;
-        $train->fill($train_data);
-        // $train->company = $train_data ["company"];
-        // $train->departure_station = $train_data ["departure_station"];
-        // $train->arrival_station = $train_data ["arrival_station"];
-        // $train->departure_time = $train_data ["departure_time"];
-        // $train->arrival_time = $train_data ["arrival_time"];
-        // $train->train_code = $train_data ["train_code"];
-        // $train->wagons_number = $train_data ["wagons_number"];
+        // $train->fill($train_data);
+        $train->company = $faker->company();
+        $train->departure_station = $faker->address();
+        $train->arrival_station = $faker->address();
+        $train->departure_time = $faker->date() . " " . $faker->time();
+        $train->arrival_time = $faker->date() . " " . $faker->time(); 
+
+        $train_code = "";
+        for($i = 0; $i < 5; $i++) {
+            $train_code .= $faker->randomLetter();
+        }
+
+        $train->train_code = $train_code;
+
+        $train->wagons_number = $faker->numberBetween(4, 30);
+
         $train->save();
         
-    }
+    // }
 } 
 }
